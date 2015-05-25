@@ -1,0 +1,15 @@
+<suite name="Group of Tests" verbose="1">
+    <test name="Group of Test">
+        <groups>
+            <define name = "HomePageTests">
+                <include name = "FirstTest"/>
+            </define>
+            <run>
+                <include name="HomePageTests" />
+            </run>
+        </groups>
+        <classes>
+            <class name= "test.java.TestLanguageSwitch" />
+        </classes>
+    </test>
+</suite>

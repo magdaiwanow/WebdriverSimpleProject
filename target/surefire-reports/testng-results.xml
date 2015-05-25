@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Group of Tests" duration-ms="7760" started-at="2015-05-25T11:13:33Z" finished-at="2015-05-25T11:13:41Z">
+    <groups>
+      <group name="FirstTest">
+        <method signature="TestLanguageSwitch.test_language_switch()[pri:0, instance:test.java.TestLanguageSwitch@13cb165]" name="test_language_switch" class="test.java.TestLanguageSwitch"/>
+      </group> <!-- FirstTest -->
+    </groups>
+    <test name="Group of Test" duration-ms="7760" started-at="2015-05-25T11:13:33Z" finished-at="2015-05-25T11:13:41Z">
+      <class name="test.java.TestLanguageSwitch">
+        <test-method status="PASS" signature="test_language_switch()[pri:0, instance:test.java.TestLanguageSwitch@13cb165]" name="test_language_switch" duration-ms="7751" started-at="2015-05-25T13:13:33Z" finished-at="2015-05-25T13:13:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test_language_switch -->
+      </class> <!-- test.java.TestLanguageSwitch -->
+    </test> <!-- Group of Test -->
+  </suite> <!-- Group of Tests -->
+</testng-results>
