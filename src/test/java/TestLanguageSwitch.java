@@ -5,6 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import main.java.pages.WeatherForecastHomePage;
 
@@ -15,12 +16,13 @@ public class TestLanguageSwitch {
     WebDriver driver;
     WeatherForecastHomePage objHomePage;
 
+    @Parameters({"basic-tests"})
     @BeforeTest
-//    public void setup() {
-//        driver = new FirefoxDriver();
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        driver.get("http://m.meteo.pl/");
-//    }
+    public void setup() {
+        driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("http://m.meteo.pl/");
+    }
 
     @Test(groups = {"FirstTest"})
     public void test_language_switch(){

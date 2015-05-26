@@ -19,7 +19,7 @@ public class TestSearchForWeatherForecast {
     WeatherForecastHomePage objHomePage;
     WeatherForecastForSelectedCity objSelectedCityPage;
 
-
+    @Parameters({"basic-tests"})
     @BeforeTest
     public void setup() {
         driver = new FirefoxDriver();
