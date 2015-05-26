@@ -29,14 +29,12 @@ public class TestLanguageSwitch {
         driver.get("http://m.meteo.pl/");
         objHomePage = new WeatherForecastHomePage(driver);
 
-        // Verify page title
         String homePageTitle = objHomePage.getStartPageTitle();
 
         Assert.assertEquals(homePageTitle.toLowerCase(), "icm meteo \u2013 nowa wersja" );
         // Assert.assertTrue(homePageTitle.toLowerCase().contains("icm meteo"));
 
         //switch language to English
-
         objHomePage.switchLanguageToEnglish();
         String homePageTitleEnglish = objHomePage.getStartPageTitle();
         Assert.assertEquals(homePageTitleEnglish.toLowerCase(), "icm meteo \u2013 new version" );

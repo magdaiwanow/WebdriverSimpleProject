@@ -2,60 +2,84 @@ package main.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class WeatherForecastHomePage {
     WebDriver driver;
-    By switchToPolish = By.className("polski");
-    By switchToEnglish = By.className("english");
-    By polishCityTextbox = By.id("miastoPL");
-    By euCityTextbox = By.id("miastoEU");
-    By polishWeatherForecast = By.id("linkPL");
-    By euWeatherForecast = By.id("linkEU");
-    By buttonShowForecast = By.className("btn_submit");
+
+    @FindBy(className = "polski")
+    WebElement switchToPolish;
+
+    @FindBy(className = "english")
+    WebElement switchToEnglish;
+
+    @FindBy(id="miastoPL")
+    WebElement polishCityTextbox;
+
+    @FindBy(id="miastoEU")
+    WebElement euCityTextbox;
+
+    @FindBy(id="linkPL")
+    WebElement polishWeatherForecast;
+
+    @FindBy(id="linkEU")
+    WebElement euWeatherForecast;
+
+    @FindBy(className="btn_submit")
+    WebElement buttonShowForecast;
+
+    @FindBy(xpath = "/html/body/header/div[2]/nav[2]/div[1]/form/ul/li[1]/div[2]/a[2]")
+    WebElement buttonSwitchToCoordinates;
+
+    @FindBy(id="wspolrzednePL")
+    WebElement coordinates;
 
 
     public WeatherForecastHomePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    //Get the page title
     public String getStartPageTitle() {
         return driver.getTitle();
     }
 
-    // Change language to English
     public void switchLanguageToEnglish() {
-        driver.findElement(switchToEnglish).click();
+        switchToEnglish.click();
     }
 
-    // Change language to Polish
     public void switchLanguageToPolish() {
-        driver.findElement(switchToPolish).click();
+        switchToPolish.click();
     }
 
-    //Switch to Polish weather forecast
     public void setPolishWeatherForecast() {
-        driver.findElement(polishWeatherForecast).click();
+        polishWeatherForecast.click();
     }
 
-    //Switch to EU weather forecast
     public void setEuWeatherForecast() {
-        driver.findElement(euWeatherForecast).click();
+        euWeatherForecast.click();
     }
 
-    //Enter polish city name
     public void enterPolishCityName(String cityNamePl){
-        driver.findElement(polishCityTextbox).sendKeys(cityNamePl);
+       polishCityTextbox.sendKeys(cityNamePl);
     }
 
-    //Enter EU city name
     public void enterEuCityName(String cityNamePl) {
-        driver.findElement(euCityTextbox).sendKeys(cityNamePl);
+        euCityTextbox.sendKeys(cityNamePl);
     }
 
-    //Show the weather forecast of selected city
+    public void switchToCoordinates() {
+        buttonSwitchToCoordinates.click();
+    }
+
+    public void enterCoordinates(String coordinatesPl){
+        coordinates.sendKeys(coordinatesPl);
+    }
+
     public void showWeatherForecast(){
-        driver.findElement(buttonShowForecast).click();
+        buttonShowForecast.click();
 
     }
 
