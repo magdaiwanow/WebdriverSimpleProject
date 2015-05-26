@@ -1,15 +1,35 @@
 <suite name="Group of Tests" verbose="1">
-    <test name="Group of Test">
-        <groups>
-            <define name = "HomePageTests">
-                <include name = "FirstTest"/>
-            </define>
-            <run>
-                <include name="HomePageTests" />
-            </run>
-        </groups>
+    <!--<test name="Group of Test">-->
+        <!--<groups>-->
+            <!--<define name = "HomePageTests">-->
+                <!--<include name = "FirstTest"/>-->
+            <!--</define>-->
+            <!--<run>-->
+                <!--<include name="HomePageTests" />-->
+            <!--</run>-->
+        <!--</groups>-->
+        <!--<classes>-->
+            <!--<class name= "test.java.TestLanguageSwitch" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <test name = "Checking Weather Forecast for coordinates">s
+        <parameter name = "coordinates" value = "50171840"/>
         <classes>
-            <class name= "test.java.TestLanguageSwitch" />
+            <class name = "test.java.TestSearchForWeatherForecast">
+                <methods>
+                    <include name = "test_coordinates_searching"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "Checking Weather Forecast for city name">
+        <parameter name = "city" value = "gliwice"/>
+        <classes>
+            <class name = "test.java.TestSearchForWeatherForecast">
+                <methods>
+                    <include name = "test_city_searching"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
