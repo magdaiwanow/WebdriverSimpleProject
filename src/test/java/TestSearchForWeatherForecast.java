@@ -4,12 +4,9 @@ package test.java;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import main.java.pages.WeatherForecastForSelectedCity;
 import main.java.pages.WeatherForecastHomePage;
-import org.testng.annotations.Parameters;
 
 
 import java.util.concurrent.TimeUnit;
@@ -19,7 +16,7 @@ public class TestSearchForWeatherForecast {
     WeatherForecastHomePage objHomePage;
     WeatherForecastForSelectedCity objSelectedCityPage;
 
-    @Parameters({"basic-tests"})
+   // @Parameters({"basic-tests"})
     @BeforeTest
     public void setup() {
         driver = new FirefoxDriver();
@@ -53,6 +50,7 @@ public class TestSearchForWeatherForecast {
 
 
     }
+
     @AfterTest
     public void cleanup() {
         driver.quit();

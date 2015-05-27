@@ -24,7 +24,7 @@ public class TestLanguageSwitch {
         driver.get("http://m.meteo.pl/");
     }
 
-    @Test(groups = {"FirstTest"})
+    @Test
     public void test_language_switch(){
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
