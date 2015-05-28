@@ -1,6 +1,5 @@
-package main.java.pages;
+package test.java.com.miwanow.weather.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,25 +14,25 @@ public class WeatherForecastHomePage {
     @FindBy(className = "english")
     WebElement switchToEnglish;
 
-    @FindBy(id="miastoPL")
+    @FindBy(id = "miastoPL")
     WebElement polishCityTextbox;
 
-    @FindBy(id="miastoEU")
+    @FindBy(id = "miastoEU")
     WebElement euCityTextbox;
 
-    @FindBy(id="linkPL")
+    @FindBy(id = "linkPL")
     WebElement polishWeatherForecast;
 
-    @FindBy(id="linkEU")
+    @FindBy(id = "linkEU")
     WebElement euWeatherForecast;
 
-    @FindBy(className="btn_submit")
+    @FindBy(className = "btn_submit")
     WebElement buttonShowForecast;
 
     @FindBy(xpath = "/html/body/header/div[2]/nav[2]/div[1]/form/ul/li[1]/div[2]/a[2]")
     WebElement buttonSwitchToCoordinates;
 
-    @FindBy(id="wspolrzednePL")
+    @FindBy(id = "wspolrzednePL")
     WebElement coordinates;
 
 
@@ -62,8 +61,8 @@ public class WeatherForecastHomePage {
         euWeatherForecast.click();
     }
 
-    public void enterPolishCityName(String cityNamePl){
-       polishCityTextbox.sendKeys(cityNamePl);
+    public void enterPolishCityName(String cityNamePl) {
+        polishCityTextbox.sendKeys(cityNamePl);
     }
 
     public void enterEuCityName(String cityNamePl) {
@@ -74,11 +73,11 @@ public class WeatherForecastHomePage {
         buttonSwitchToCoordinates.click();
     }
 
-    public void enterCoordinates(String coordinatesPl){
+    public void enterCoordinates(String coordinatesPl) {
         coordinates.sendKeys(coordinatesPl);
     }
 
-    public void showWeatherForecast(){
+    public void showWeatherForecast() {
         buttonShowForecast.click();
 
     }
