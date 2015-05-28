@@ -50,7 +50,6 @@ public class TestSearchForWeatherForecast {
 
 
     }
-
     @AfterTest
     public void cleanup() {
         driver.quit();

@@ -3,14 +3,11 @@ package test.java;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import main.java.pages.WeatherForecastHomePage;
 
 import java.util.concurrent.TimeUnit;
-
+@Listeners({TakingScreenShots.class})
 public class TestLanguageSwitch {
 
     WebDriver driver;
@@ -39,7 +36,7 @@ public class TestLanguageSwitch {
         //switch language to English
         objHomePage.switchLanguageToEnglish();
         String homePageTitleEnglish = objHomePage.getStartPageTitle();
-        Assert.assertEquals(homePageTitleEnglish.toLowerCase(), "icm meteo \u2013 new version" );
+        Assert.assertEquals(homePageTitleEnglish.toLowerCase(), "icm meteo \u2013 new wersja" );
 
         }
     @AfterTest
