@@ -1,5 +1,6 @@
 package test.java.com.miwanow.report;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.TestListenerAdapter;

@@ -4,15 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import test.java.com.miwanow.report.ScreenshotListener;
 import test.java.com.miwanow.weather.page.WeatherForecastHomePage;
 import test.java.com.miwanow.report.TakingScreenShots;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners({TakingScreenShots.class})
+@Listeners({ScreenshotListener.class})
 public class TestLanguageSwitch {
 
     WebDriver driver;
+    public WebDriver getDriver(){
+        return driver;
+    }
     WeatherForecastHomePage objHomePage;
 
     @Parameters({"basic-tests"})
