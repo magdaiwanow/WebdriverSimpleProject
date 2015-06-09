@@ -11,14 +11,20 @@ import test.java.com.miwanow.report.TakingScreenShots;
 import test.java.com.miwanow.weather.page.WeatherForecastForSelectedCity;
 import test.java.com.miwanow.weather.page.WeatherForecastHomePage;
 
-
-import java.util.concurrent.TimeUnit;
 @Listeners({TakingScreenShots.class})
 public class TestSearchForWeatherForecast {
+
+
     WebDriver driver;
      WeatherForecastHomePage objHomePage;
     WeatherForecastForSelectedCity objSelectedCityPage;
 
+    @DataProvider(name="SearchProvider")
+    public Object[][] getDataFromProvider() {
+        return new Object[][]{
+                {"gliwice"}
+        };
+    }
     @Parameters("browser")
     @BeforeMethod
     public void beforeTest(String browser)
@@ -42,8 +48,7 @@ public class TestSearchForWeatherForecast {
     }
 
 
-    @Parameters({"city"})
-    @Test(priority = 0)
+    @Test(dataProvider = "SearchProvider")
     public void test_city_searching(String city) {
 
         objHomePage = new WeatherForecastHomePage(driver);
@@ -55,24 +60,27 @@ public class TestSearchForWeatherForecast {
 
     }
 
-    @Parameters({"coordinates"})
-    @Test
-    public void test_coordinates_searching(String param) {
-        objHomePage = new WeatherForecastHomePage(driver);
-        objHomePage.switchToCoordinates();
-        objHomePage.enterCoordinates(param);
-        objHomePage.showWeatherForecast();
-
-        objSelectedCityPage = new WeatherForecastForSelectedCity(driver);
-        objSelectedCityPage.getCoordinates();
-        Assert.assertEquals(objSelectedCityPage.getCoordinates(), param);
-
-
-    }
+//    @Parameters({"coordinates"})
+//    @Test
+//    public void test_coordinates_searching(String param) {
+//        objHomePage = new WeatherForecastHomePage(driver);
+//        objHomePage.switchToCoordinates();
+//        objHomePage.enterCoordinates(param);
+//        objHomePage.showWeatherForecast();
+//
+//        objSelectedCityPage = new WeatherForecastForSelectedCity(driver);
+//        objSelectedCityPage.getCoordinates();
+//        Assert.assertEquals(objSelectedCityPage.getCoordinates(), param);
+//
+//
+//    }
 
     @AfterMethod
     public void cleanup() {
         driver.quit();
     }
+
+
+
 
 }
