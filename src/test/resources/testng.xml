@@ -1,27 +1,34 @@
-<suite name="Group of Tests" verbose="1">
-    <test name="Home Page">
+<suite name="Group of Tests" parallel="tests">
+    <test name="ChromeTests">
+            <parameter name="browser" value="chrome" />
+            <parameter name = "coordinates" value = "50171840"/>
+            <parameter name = "city" value = "gliwice"/>
+            <classes>
+                <class name= "test.java.com.miwanow.weather.TestLanguageSwitch" />
+                <class name = "test.java.com.miwanow.weather.TestSearchForWeatherForecast">
+                    <methods>
+                        <include name = "test_coordinates_searching"/>
+                    </methods>
+                </class>
+                <class name = "test.java.com.miwanow.weather.TestSearchForWeatherForecast">
+                <methods>
+                    <include name = "test_city_searching"/>
+                </methods>
+                </class>
+            </classes>
+    </test>
+    <test name = "FirefoxTests">
+        <parameter name="browser" value="firefox" />
+        <parameter name = "coordinates" value = "50171840"/>
+        <parameter name = "city" value = "gliwice"/>
         <classes>
             <class name= "test.java.com.miwanow.weather.TestLanguageSwitch" />
-        </classes>
-    </test>
-    <test name = "Checking Weather Forecast for coordinates">s
-        <parameter name = "coordinates" value = "50171840"/>
-        <classes>
             <class name = "test.java.com.miwanow.weather.TestSearchForWeatherForecast">
                 <methods>
                     <include name = "test_coordinates_searching"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name = "Checking Weather Forecast for city name">
-        <parameter name = "city" value = "gliwice"/>
-        <classes>
-            <class name = "test.java.com.miwanow.weather.TestSearchForWeatherForecast">
-                <methods>
                     <include name = "test_city_searching"/>
                 </methods>
             </class>
         </classes>
     </test>
-</suite>
+ </suite>

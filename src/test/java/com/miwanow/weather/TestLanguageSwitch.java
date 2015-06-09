@@ -1,27 +1,43 @@
 package test.java.com.miwanow.weather;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import test.java.com.miwanow.weather.page.WeatherForecastHomePage;
 import test.java.com.miwanow.report.TakingScreenShots;
 
-import java.util.concurrent.TimeUnit;
 
 @Listeners({TakingScreenShots.class})
 public class TestLanguageSwitch {
 
-    WebDriver driver;
-    WeatherForecastHomePage objHomePage;
+    private WebDriver driver;
+    private WeatherForecastHomePage objHomePage;
 
-    @Parameters({"basic-tests"})
-    @BeforeTest
-    public void setup() {
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    @Parameters("browser")
+    @BeforeMethod
+    public void beforeTest(String browser)
+    {
+        if (browser.equalsIgnoreCase("firefox")) {
+            driver = new FirefoxDriver();
+        } else if (browser.equalsIgnoreCase("chrome")) {
+            System.setProperty("webdriver.chrome.driver","D://SeleniumWebDriver/chromedriver.exe");
+            driver = new ChromeDriver();
+        }
+        else if (browser.equalsIgnoreCase("ie")) {
+            System.setProperty("webdriver.ie.driver", "D://SeleniumWebDriver//IEDriverServer");
+            driver = new InternetExplorerDriver();
+        }
+        else
+        {
+            throw new IllegalArgumentException("The Browser Type is Undefined");
+        }
+        driver.manage().window().maximize();
         driver.get("http://m.meteo.pl/");
     }
+
 
     @Test
     public void shouldChangeLanguageToEnglish() {
@@ -30,15 +46,13 @@ public class TestLanguageSwitch {
         String homePageTitle = objHomePage.getStartPageTitle();
 
         Assert.assertEquals(homePageTitle.toLowerCase(), "icm meteo \u2013 nowa wersja");
-        // Assert.assertTrue(homePageTitle.toLowerCase().contains("icm meteo"));
 
-        //switch language to English
         objHomePage.switchLanguageToEnglish();
         String homePageTitleEnglish = objHomePage.getStartPageTitle();
-        Assert.assertEquals(homePageTitleEnglish.toLowerCase(), "icm meteo \u2013 new wersja");
+        Assert.assertEquals(homePageTitleEnglish.toLowerCase(), "icm meteo \u2013 new version");
     }
 
-    @AfterTest
+    @AfterMethod
     public void cleanup() {
         driver.quit();
     }

@@ -16,8 +16,7 @@ import java.util.Date;
 public class TakingScreenShots extends TestListenerAdapter {
 
     private static final String DD_MMM_YYYY__HH_MM_SSAA = "dd_MMM_yyyy__hh_mm_ssaa";
-    public static final String PNG = "png";
-    private int count = 0;
+    private static final String PNG = "png";
 
     @Override
     public void onTestFailure(ITestResult testResult) {
@@ -39,11 +38,8 @@ public class TakingScreenShots extends TestListenerAdapter {
             BufferedImage bi = robot.createScreenCapture(new Rectangle(1280, 1024));
 
             ImageIO.write(bi, PNG, new File(testResultsDirectory.getCanonicalPath() + "\\"+ fileName));
-            count++;
             Reporter.log(fileName);
-        } catch (AWTException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (AWTException | IOException e) {
             e.printStackTrace();
         }
     }
