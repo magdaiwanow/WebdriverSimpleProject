@@ -8,47 +8,38 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import test.java.com.miwanow.report.TakingScreenShots;
+import test.java.com.miwanow.weather.data_providers.DataProviderCoordinates;
+import test.java.com.miwanow.weather.data_providers.DataProviderPolishCityName;
 import test.java.com.miwanow.weather.page.WeatherForecastForSelectedCity;
 import test.java.com.miwanow.weather.page.WeatherForecastHomePage;
 
 @Listeners({TakingScreenShots.class})
 public class TestSearchForWeatherForecast {
 
-
     WebDriver driver;
-     WeatherForecastHomePage objHomePage;
+    WeatherForecastHomePage objHomePage;
     WeatherForecastForSelectedCity objSelectedCityPage;
 
-    @DataProvider(name="SearchProvider")
-    public Object[][] getDataFromProvider() {
-        return new Object[][]{
-                {"gliwice"}
-        };
-    }
+
     @Parameters("browser")
     @BeforeMethod
-    public void beforeTest(String browser)
-    {
+    public void beforeTest(String browser) {
         if (browser.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         } else if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver","D://SeleniumWebDriver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "D://SeleniumWebDriver/chromedriver.exe");
             driver = new ChromeDriver();
-        }
-        else if (browser.equalsIgnoreCase("ie")) {
+        } else if (browser.equalsIgnoreCase("ie")) {
             System.setProperty("webdriver.ie.driver", "D://SeleniumWebDriver//IEDriverServer");
             driver = new InternetExplorerDriver();
-        }
-        else
-        {
+        } else {
             throw new IllegalArgumentException("The Browser Type is Undefined");
         }
         driver.manage().window().maximize();
         driver.get("http://m.meteo.pl/");
     }
 
-
-    @Test(dataProvider = "SearchProvider")
+    @Test(dataProvider = "CityNamesProvider", dataProviderClass = DataProviderPolishCityName.class)
     public void test_city_searching(String city) {
 
         objHomePage = new WeatherForecastHomePage(driver);
@@ -57,30 +48,22 @@ public class TestSearchForWeatherForecast {
 
         objSelectedCityPage = new WeatherForecastForSelectedCity(driver);
         Assert.assertTrue(objSelectedCityPage.getCityName().toLowerCase().contains(city));
-
     }
 
-//    @Parameters({"coordinates"})
-//    @Test
-//    public void test_coordinates_searching(String param) {
-//        objHomePage = new WeatherForecastHomePage(driver);
-//        objHomePage.switchToCoordinates();
-//        objHomePage.enterCoordinates(param);
-//        objHomePage.showWeatherForecast();
-//
-//        objSelectedCityPage = new WeatherForecastForSelectedCity(driver);
-//        objSelectedCityPage.getCoordinates();
-//        Assert.assertEquals(objSelectedCityPage.getCoordinates(), param);
-//
-//
-//    }
+    @Test(dataProvider = "CoordinatesProvider", dataProviderClass = DataProviderCoordinates.class)
+    public void test_coordinates_searching(String param) {
+        objHomePage = new WeatherForecastHomePage(driver);
+        objHomePage.switchToCoordinates();
+        objHomePage.enterCoordinates(param);
+        objHomePage.showWeatherForecast();
+
+        objSelectedCityPage = new WeatherForecastForSelectedCity(driver);
+        objSelectedCityPage.getCoordinates();
+        Assert.assertEquals(objSelectedCityPage.getCoordinates(), param);
+    }
 
     @AfterMethod
     public void cleanup() {
         driver.quit();
     }
-
-
-
-
 }
